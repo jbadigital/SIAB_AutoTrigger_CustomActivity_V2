@@ -3,8 +3,7 @@
     "metaData":
     {
         "icon": "images/icon.png",
-        "iconSmall": "images/iconSmall.png",
-        "category": "<CATEGORY_OF_APP_BASED_ON_DOCS>"
+        "iconSmall": "images/iconSmall.png"
     },
 
     "type": "REST",
@@ -28,37 +27,37 @@
             "body": "",
             "header": "",
             "format": "json",
-            "useJwt": false,
+            "useJwt": true,
             "timeout": 10000
         }
     },
     
     "configurationArguments":
     {
-        "applicationExtensionKey": "a3a59070-24f5-5e88-66cd-3343c2e0f310",
+        "applicationExtensionKey": "a3a59070-24f5-5e88-66cd-3343c2e0f308",
         "save":
         {
             "url": "https://page.super-retirement.com.au/siab-custom-activity-save-V2",
             "verb": "POST",
-            "useJwt": false
+            "useJwt": true
         },
         "publish":
         {
             "url": "https://page.super-retirement.com.au/siab-custom-activity-publish-V2",
             "verb": "POST",
-            "useJwt": false
+            "useJwt": true
         },
         "stop":
         {
-            "url": "<HTTPS_URL_OF_APP>/journeybuilder/stop",
+            "url": "https://page.super-retirement.com.au/siab-custom-activity-validate-V2",
             "verb": "POST",
-            "useJwt": false
+            "useJwt": true
         },
         "validate":
         {
             "url": "https://page.super-retirement.com.au/siab-custom-activity-validate-V2",
             "verb": "POST",
-            "useJwt": false
+            "useJwt": true
         }
     },
     "userInterfaces":
