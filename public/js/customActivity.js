@@ -47,7 +47,7 @@ define(['postmonger'], function (Postmonger) {
      */
     function save() {
         // get the Key field from the Interactions API call for the journey
-        var eventDefinitionKey = "DEAudience-a3a59070-24f5-5e88-66cd-3343c2e0f308";
+        var eventDefinitionKey = "APIEvent-a3a59070-24f5-5e88-66cd-3343c2e0f308";
         
         payload['arguments'].execute.inArguments = [
             {"LetterRefId":"{{Event."+ eventDefinitionKey + ".LetterRefId}}"},
