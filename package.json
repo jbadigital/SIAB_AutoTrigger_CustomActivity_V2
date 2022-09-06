@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/jbadigital/SIAB_AutoTrigger_CustomActivity_V2.git"
   },
   "keywords": [
     "journey",
@@ -18,8 +18,8 @@
     "salesforce marketing cloud",
     "heroku"
   ],
-  "author": "Manjunath Ramesh",
-  "homepage": "",
+  "author": "IVE Group Developer MR",
+  "homepage": "https://github.com/jbadigital/SIAB_AutoTrigger_CustomActivity_V2.git#readme",
   "dependencies": {
     "axios": "^0.21.2",
     "base64url": "^3.0.1",

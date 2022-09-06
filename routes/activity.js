@@ -5,13 +5,10 @@ var util = require('util');
 const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 var util = require('util');
-let axios = require("axios");
-
-// Global Variables
-const tokenURL = `${process.env.authenticationUrl}/v2/token`;
-
+var http = require('https');
 
 exports.logExecuteData = [];
+
 function logData(req) {
     exports.logExecuteData.push({
         body: req.body,
@@ -75,7 +72,10 @@ exports.save = function (req, res) {
  * POST Handler for /execute/ route of Activity.
  */
 exports.execute = function (req, res) {
+
+    // example on how to decode JWT
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+
         // verification error -> unauthorized request
         if (err) {
             console.error(err);
@@ -83,13 +83,16 @@ exports.execute = function (req, res) {
         }
 
         if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
-            console.log('##### decoded ####=>', decoded);
+            
+            // decoded in arguments
+            var decodedArgs = decoded.inArguments[0];
+            
+            logData(req);
             res.send(200, 'Execute');
         } else {
             console.error('inArguments invalid.');
             return res.status(400).end();
         }
-
     });
 };
 
@@ -98,11 +101,11 @@ exports.execute = function (req, res) {
  * POST Handler for /publish/ route of Activity.
  */
 exports.publish = function (req, res) {
+    // Data from the req and put it in an array accessible to the main app.
     //console.log( req.body );
     logData(req);
     res.send(200, 'Publish');
 };
-
 
 /*
  * POST Handler for /validate/ route of Activity.
@@ -113,35 +116,3 @@ exports.validate = function (req, res) {
     logData(req);
     res.send(200, 'Validate');
 };
-
-
-/*
- * POST Handler for /Stop/ route of Activity.
- */
-exports.stop = function (req, res) {
-    // Data from the req and put it in an array accessible to the main app.
-    //console.log( req.body );
-    logData(req);
-    res.send(200, 'Stop');
-};
-
-
-/**
- * This function relies on the env variables to be set
- * 
- * This function invokes the enhanced package authentication. 
- * This would return a access token that can be used to call additional Marketing Cloud APIs
- * 
- */
-function retrieveToken () {
-    axios.post(tokenURL, { // Retrieving of token
-        grant_type: 'client_credentials',
-        client_id: process.env.clientId,
-        client_secret: process.env.clientSecret
-    })
-    .then(function (response) {
-        return response.data['access_token'];
-    }).catch(function (error) {
-        return error;
-    });
-}

@@ -1,29 +1,28 @@
 {
     "workflowApiVersion": "1.1",
-    "metaData":
-    {
+    "metaData": {
         "icon": "images/icon.png",
-        "iconSmall": "images/iconSmall.png"
+        "iconSmall": "images/iconSmall.png",
+        "category": "message"
     },
-
     "type": "REST",
-    "lang":
-    {
-        "en-US":
-        {
+    "lang": {
+        "en-US": {
             "name": "Mercer_SIAB_V2",
-            "description": "Super In a Box App Version 2.0, this app retrieves the data from JB and passes to CloudPage for email trigger.",
-            "step1Label": "SIAB Activity"
+          "description": "Super In a Box App Version 2.0, this app retrieves the data from JB and passes to CloudPage for email trigger.",
+          "step1Label": "SIAB Activity"
         }
     },
-    "arguments":
-    {
-        "execute":
-        {
-            "inArguments": [],
-            "outArguments": [],
-            "url": "https://page.super-retirement.com.au/siab-custom-activity-execute-V2?id=769f1ba2904d46baa3c8068763044879",
-            "verb": "POST",
+    "arguments": {
+        "execute": {
+           "inArguments":[
+				{
+                    "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}"
+                }									
+			],
+          "outArguments": [],
+          "url": "https://page.super-retirement.com.au/siab-custom-activity-execute-V2?id=769f1ba2904d46baa3c8068763044879",
+           "verb": "POST",
             "body": "",
             "header": "",
             "format": "json",
@@ -31,46 +30,41 @@
             "timeout": 10000
         }
     },
-    
-    "configurationArguments":
-    {
-        "applicationExtensionKey": "a3a59070-24f5-5e88-66cd-3343c2e0f308",
-        "save":
-        {
-            "url": "https://page.super-retirement.com.au/siab-custom-activity-save-V2",
-            "verb": "POST",
-            "useJwt": true
-        },
-        "publish":
-        {
-            "url": "https://page.super-retirement.com.au/siab-custom-activity-publish-V2",
-            "verb": "POST",
-            "useJwt": true
-        },
-        "stop":
-        {
-            "url": "https://page.super-retirement.com.au/siab-custom-activity-validate-V2",
-            "verb": "POST",
-            "useJwt": true
-        },
-        "validate":
-        {
-            "url": "https://page.super-retirement.com.au/siab-custom-activity-validate-V2",
-            "verb": "POST",
-            "useJwt": true
-        }
+    "configurationArguments": {
+      "applicationExtensionKey": "695eda72-e7b2-47e9-a9e5-8bbda3b2dcb0",
+      "save": {
+        "url": "https://page.super-retirement.com.au/siab-custom-activity-save-V2",
+          "verb": "POST",
+        "useJwt": true
+       },
+       "publish": {
+        "url": "https://page.super-retirement.com.au/siab-custom-activity-publish-V2",
+           "verb": "POST",
+        "useJwt": true
+       },
+      "stop": {
+        "url": "https://page.super-retirement.com.au/siab-custom-activity-validate-V2",
+           "verb": "POST",
+        "useJwt": true
+      },
+      "validate": {
+        "url": "https://page.super-retirement.com.au/siab-custom-activity-validate-V2",
+        "verb": "POST",
+        "useJwt": true
+      }
     },
-    "userInterfaces":
-    {
+    "wizardSteps": [
+        { "label": "Configure Activity", "key": "step1" }
+    ],
+    "userInterfaces": {
         "configModal": {
             "height": 400,
-            "width": 800,
-            "fullscreen": false
+            "width": 1000,
+          "fullscreen": false
         }
     },
-    "schema": 
-    {
-        "arguments":{
+    "schema": {
+        "arguments": {
             "execute": {
                 "inArguments": [],
                 "outArguments": []

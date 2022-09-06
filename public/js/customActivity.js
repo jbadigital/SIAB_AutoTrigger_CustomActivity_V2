@@ -1,55 +1,77 @@
-define(['postmonger'], function (Postmonger) {
+define([
+    'postmonger'
+], function (
+    Postmonger
+) {
     'use strict';
 
-    let connection = new Postmonger.Session();
-    let authTokens = {};
-    let payload = {};
-
-    // Configuration variables
-    let eventSchema = ''; // variable is used in parseEventSchema()
-    let lastnameSchema = ''; // variable is used in parseEventSchema()
-    let eventDefinitionKey;
-
+    var connection = new Postmonger.Session();
+    var authTokens = {};
+    var payload = {};
     $(window).ready(onRender);
-    connection.on('initActivity', initialize);
-    connection.on('clickedNext', save); //Save function within MC
 
+    connection.on('initActivity', initialize);
+    connection.on('requestedTokens', onGetTokens);
+    connection.on('requestedEndpoints', onGetEndpoints);
+
+    connection.on('clickedNext', save);
+   
     function onRender() {
         // JB will respond the first time 'ready' is called with 'initActivity'
         connection.trigger('ready');
+
         connection.trigger('requestTokens');
         connection.trigger('requestEndpoints');
+
     }
 
-    /**
-     * This function is to pull out the event definition within journey builder.
-     * With the eventDefinitionKey, you are able to pull out values that passes through the journey
-     */
-    connection.trigger('requestTriggerEventDefinition');
-    connection.on('requestedTriggerEventDefinition', function (eventDefinitionModel) {
-        if (eventDefinitionModel) {
-            eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
-            // console.log('Request Trigger >>>', JSON.stringify(eventDefinitionModel));
-        }
-    });
-
     function initialize(data) {
+        console.log(data);
         if (data) {
             payload = data;
         }
-        initialLoad(data);
-        parseEventSchema();
+        
+        var hasInArguments = Boolean(
+            payload['arguments'] &&
+            payload['arguments'].execute &&
+            payload['arguments'].execute.inArguments &&
+            payload['arguments'].execute.inArguments.length > 0
+        );
+
+        var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
+
+        console.log(inArguments);
+
+        $.each(inArguments, function (index, inArgument) {
+            $.each(inArgument, function (key, val) {
+                
+              
+            });
+        });
+
+        connection.trigger('updateButton', {
+            button: 'next',
+            text: 'done',
+            visible: true
+        });
     }
 
-    /**
-     * Save function is fired off upon clicking of "Done" in Marketing Cloud
-     * The config.json will be updated here if there are any updates to be done via Front End UI
-     */
+    function onGetTokens(tokens) {
+        console.log(tokens);
+        authTokens = tokens;
+    }
+
+    function onGetEndpoints(endpoints) {
+        console.log(endpoints);
+    }
+
     function save() {
-        // get the Key field from the Interactions API call for the journey
+    	
+		// get the Key field from the Interactions API call for the journey
         var eventDefinitionKey = "DEAudience-a3a59070-24f5-5e88-66cd-3343c2e0f308";
         
         payload['arguments'].execute.inArguments = [
+			{"tokens": authTokens},
             {"LetterRefId":"{{Event."+ eventDefinitionKey + ".LetterRefId}}"},
             {"EventInstanceID":"{{Event."+ eventDefinitionKey + ".EventInstanceID}}"},
             {"cloupra__Person__c":"{{Event."+ eventDefinitionKey + ".cloupra__Person__c}}"},
@@ -84,62 +106,13 @@ define(['postmonger'], function (Postmonger) {
             {"DE_Key":"{{Event."+ eventDefinitionKey + ".DE_Key}}"},
             {"TestRecord":"{{Event."+ eventDefinitionKey + ".TestRecord}}"},
             {"DEROWID":"{{Event."+ eventDefinitionKey + "._customObjectKey}}"},
-            {"TriggeredSendExternalKey":"{{Event."+ eventDefinitionKey + ".TriggeredSendExternalKey}}"}
-        ];
+            {"TriggeredSendExternalKey":"{{Event."+ eventDefinitionKey + ".TriggeredSendExternalKey}}"}];
+        
         payload['metaData'].isConfigured = true;
+
+        console.log(payload);
         connection.trigger('updateActivity', payload);
     }
 
-    /**
-     * 
-     * @param {*} data
-     * 
-     * This data param is the config json payload that needs to be loaded back into the UI upon opening the custom application within journey builder 
-     * This function is invoked when the user clicks on the custom activity in Marketing Cloud. 
-     * If there are information present, it should be loaded back into the appropriate places. 
-     * e.g. input fields, select lists
-     */
-    function initialLoad(data) {
-    };
 
-
-    /**
-     * This function is to pull the relevant information to create the schema of the objects
-     * 
-     * This function pulls out the schema for additional customizations that can be used.
-     * This function leverages on the required field of "Last Name" to pull out the overall event schema
-     * 
-     * returned variables of: lastnameSchema , eventSchema.
-     * eventSchema = Case:Contact:
-     * lastnameSchema = Case:Contact:<last_name_schema>
-     * 
-     * View the developer console in chrome upon opening of application in MC Journey Builder for further clarity.
-     */
-    function parseEventSchema() {
-        // Pulling data from the schema
-        connection.trigger('requestSchema');
-        connection.on('requestedSchema', function (data) {
-            // save schema
-            let dataJson = data['schema'];
-
-            for (let i = 0; i < dataJson.length; i++) {
-
-                // Last name schema and creation of event schema
-                // Last name is a required field in SF so this is used to pull the event schema
-                if (dataJson[i].key.toLowerCase().replace(/ /g, '').indexOf("lastname") !== -1) {
-                    let splitArr = dataJson[i].key.split(".");
-                    lastnameSchema = splitArr[splitArr.length - 1];
-                    console.log('Last Name Schema >>', lastnameSchema);
-
-                    let splitName = lastnameSchema.split(":");
-                    let reg = new RegExp(splitName[splitName.length - 1], "g");
-                    let oldSchema = splitArr[splitArr.length - 1];
-
-                    eventSchema = oldSchema.replace(reg, "");
-                    console.log("Event Schema >>", eventSchema);
-                }
-            }
-
-        });
-    }
 });
