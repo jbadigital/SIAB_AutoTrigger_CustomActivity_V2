@@ -1,0 +1,81 @@
+{
+    "workflowApiVersion": "1.1",
+    "metaData":
+    {
+        "icon": "images/icon.png",
+        "iconSmall": "images/iconSmall.png",
+        "category": "<CATEGORY_OF_APP_BASED_ON_DOCS>"
+    },
+
+    "type": "REST",
+    "lang":
+    {
+        "en-US":
+        {
+            "name": "Mercer_SIAB_V2",
+            "description": "Super In a Box App Version 2.0, this app retrieves the data from JB and passes to CloudPage for email trigger.",
+            "step1Label": "SIAB Activity"
+        }
+    },
+    "arguments":
+    {
+        "execute":
+        {
+            "inArguments": [],
+            "outArguments": [],
+            "url": "https://page.super-retirement.com.au/siab-custom-activity-execute-V2?id=769f1ba2904d46baa3c8068763044879",
+            "verb": "POST",
+            "body": "",
+            "header": "",
+            "format": "json",
+            "useJwt": false,
+            "timeout": 10000
+        }
+    },
+    
+    "configurationArguments":
+    {
+        "applicationExtensionKey": "8f92dbca-baa3-30f1-fb25-72f3a7e20059",
+        "save":
+        {
+            "url": "https://page.super-retirement.com.au/siab-custom-activity-save-V2",
+            "verb": "POST",
+            "useJwt": false
+        },
+        "publish":
+        {
+            "url": "https://page.super-retirement.com.au/siab-custom-activity-publish-V2",
+            "verb": "POST",
+            "useJwt": false
+        },
+        "stop":
+        {
+            "url": "<HTTPS_URL_OF_APP>/journeybuilder/stop",
+            "verb": "POST",
+            "useJwt": false
+        },
+        "validate":
+        {
+            "url": "https://page.super-retirement.com.au/siab-custom-activity-validate-V2",
+            "verb": "POST",
+            "useJwt": false
+        }
+    },
+    "userInterfaces":
+    {
+        "configModal": {
+            "height": 400,
+            "width": 800,
+            "fullscreen": false
+        }
+    },
+    "schema": 
+    {
+        "arguments":{
+            "execute": {
+                "inArguments": [],
+                "outArguments": []
+            }
+        }
+    }
+}
