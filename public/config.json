@@ -15,11 +15,7 @@
     },
     "arguments": {
         "execute": {
-           "inArguments":[
-				{
-                    "emailAddress": "{{Contact.Attribute.CustomActivity.EmailAddress}}"
-                }									
-			],
+           "inArguments":[],
           "outArguments": [],
           "url": "https://page.super-retirement.com.au/siab-custom-activity-execute-V2?id=769f1ba2904d46baa3c8068763044879",
            "verb": "POST",
