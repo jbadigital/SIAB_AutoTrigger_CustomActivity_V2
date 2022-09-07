@@ -43,7 +43,7 @@
         "useJwt": true
        },
       "stop": {
-        "url": "https://page.super-retirement.com.au/siab-custom-activity-validate-V2",
+        "url": "https://page.super-retirement.com.au/siab-custom-activity-stop-V2",
            "verb": "POST",
         "useJwt": true
       },
