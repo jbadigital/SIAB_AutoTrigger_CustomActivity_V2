@@ -5,7 +5,7 @@ define([
 ) {
     'use strict';
 
-	var $ = require( 'jquery' );
+
     var connection = new Postmonger.Session();
 	
     var authTokens = {};
