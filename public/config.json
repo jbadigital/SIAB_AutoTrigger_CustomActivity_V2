@@ -16,6 +16,7 @@
     "arguments": {
         "execute": {
            "inArguments":[
+               {"note": "test variable from cofig file"},
                 {"LetterRefId":"{{Event.DEAudience-a3a59070-24f5-5e88-66cd-3343c2e0f308.LetterRefId}}"},
                 {"EventInstanceID":"{{Event.DEAudience-a3a59070-24f5-5e88-66cd-3343c2e0f308.EventInstanceID}}"},
                 {"cloupra__Person__c":"{{Event.DEAudience-a3a59070-24f5-5e88-66cd-3343c2e0f308.cloupra__Person__c}}"},
@@ -98,7 +99,7 @@
     "schema": {
         "arguments": {
             "execute": {
-                "inArguments": [{"LetterRefId":"{{Event.DEAudience-a3a59070-24f5-5e88-66cd-3343c2e0f308.LetterRefId}}"},
+                "inArguments": [{"note": "test variable from schema arguments"},{"LetterRefId":"{{Event.DEAudience-a3a59070-24f5-5e88-66cd-3343c2e0f308.LetterRefId}}"},
                 {"EventInstanceID":"{{Event.DEAudience-a3a59070-24f5-5e88-66cd-3343c2e0f308.EventInstanceID}}"},
                 {"cloupra__Person__c":"{{Event.DEAudience-a3a59070-24f5-5e88-66cd-3343c2e0f308.cloupra__Person__c}}"},
                 {"Service_Id":"{{Event.DEAudience-a3a59070-24f5-5e88-66cd-3343c2e0f308.Service_Id}}"},
