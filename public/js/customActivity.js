@@ -73,7 +73,7 @@ define([
         var eventDefinitionKey = "DEAudience-a3a59070-24f5-5e88-66cd-3343c2e0f308";
         
         payload['arguments'].execute.inArguments = [
-			{"tokens": authTokens},
+			{"tokens": "TEST"},{"note": "test variable from custom activity"},
             {"LetterRefId":"{{Event."+ eventDefinitionKey + ".LetterRefId}}"},
             {"EventInstanceID":"{{Event."+ eventDefinitionKey + ".EventInstanceID}}"},
             {"cloupra__Person__c":"{{Event."+ eventDefinitionKey + ".cloupra__Person__c}}"},
