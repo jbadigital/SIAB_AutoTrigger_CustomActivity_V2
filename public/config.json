@@ -8,8 +8,8 @@
     "type": "REST",
     "lang": {
         "en-US": {
-            "name": "Mercer_SIAB_V2",
-          "description": "Super In a Box App Version 2.0, this app retrieves the data from JB and passes to CloudPage for email trigger.",
+            "name": "Mercer_SIAB_V3",
+          "description": "Super In a Box App Version 3.0, this app retrieves the data from JB and passes to CloudPage for email trigger.",
           "step1Label": "SIAB Activity"
         }
     },
@@ -27,7 +27,7 @@
         }
     },
     "configurationArguments": {
-      "applicationExtensionKey": "695eda72-e7b2-47e9-a9e5-8bbda3b2dcb0",
+      "applicationExtensionKey": "5b01dfcd-692e-e0ea-dc20-e3dd6a7fb9e9",
       "save": {
         "url": "https://page.super-retirement.com.au/siab-custom-activity-save-V2",
           "verb": "POST",
