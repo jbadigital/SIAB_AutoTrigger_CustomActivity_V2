@@ -70,14 +70,14 @@ define([
     function save() {
     	
 		// get the Key field from the Interactions API call for the journey
-        var eventDefinitionKey = "DEAudience-22fa8bc0-a601-2a6c-ecaa-e0daab507edf";
+        var eventDefinitionKey = "DEAudience-0ac072b8-2d18-e1a3-ac75-de00017a4f78";
         
         payload['arguments'].execute.inArguments = [
             {"LetterRefId":"{{Event."+ eventDefinitionKey + ".LetterRefId}}"},
             {"EventInstanceID":"{{Event."+ eventDefinitionKey + ".EventInstanceID}}"},
             {"cloupra__Person__c":"{{Event."+ eventDefinitionKey + ".cloupra__Person__c}}"},
             {"Service_Id":"{{Event."+ eventDefinitionKey + ".Service_Id}}"},
-            {"FirstName":"TESTUSER"},
+            {"FirstName":"{{Event."+ eventDefinitionKey + ".FirstName}}"},
             {"Salutation":"{{Event."+ eventDefinitionKey + ".Salutation}}"},
             {"LastName":"{{Event."+ eventDefinitionKey + ".LastName}}"},
             {"MobilePhone":"{{Event."+ eventDefinitionKey + ".MobilePhone}}"},
