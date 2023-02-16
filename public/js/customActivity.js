@@ -77,7 +77,7 @@ define([
             {"EventInstanceID":"{{Event."+ eventDefinitionKey + ".EventInstanceID}}"},
             {"cloupra__Person__c":"{{Event."+ eventDefinitionKey + ".cloupra__Person__c}}"},
             {"Service_Id":"{{Event."+ eventDefinitionKey + ".Service_Id}}"},
-            {"FirstName":"{{Event."+ eventDefinitionKey + ".FirstName}}"},
+            {"FirstName":"TESTUSER"},
             {"Salutation":"{{Event."+ eventDefinitionKey + ".Salutation}}"},
             {"LastName":"{{Event."+ eventDefinitionKey + ".LastName}}"},
             {"MobilePhone":"{{Event."+ eventDefinitionKey + ".MobilePhone}}"},
